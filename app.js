@@ -9,9 +9,6 @@ const app = express();
 //Conexion a la DB
 conexionDB();
 
-// setting
-app.set("port", process.env.port || 3000);
-
 //Middleware 
 app.use(express.json());
 
