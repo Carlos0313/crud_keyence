@@ -1,0 +1,27 @@
+'use strict'
+
+//Importamps Express y rutas
+const express = require('express');
+const conexionDB = require('./db.conexion');
+const routes = require('./routes/punch_router'); 
+const app = express();
+
+//Conexion a la DB
+conexionDB();
+
+// setting
+app.set("port", process.env.port || 3000);
+
+//Middleware 
+app.use(express.json());
+
+// Cargamos las rutas
+routes.route('/').get((req,res)=>{
+    resp = respuesta(true, 200, 'Error esta ruta no esta activa')
+    res.send(resp);
+})
+
+app.use('/api/', routes);
+
+
+module.exports = app;
